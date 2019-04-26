@@ -1,14 +1,2 @@
-helloworld
-
-create new codes
-
-create a new branch
-
-how to
-
-sososo
-
-md
-
-nibuhao
-
+Git is a version control system.
+Git is free software.
