@@ -32,18 +32,19 @@ git reset --hard HEAD~n
 //回到具体版本
 git reset --hard 版本号前7位
 //撤销工作区的修改
-git checkout -- 文件名
+git checkout -- 文件名（checkout这个命令还能切换分支，见后一段）
 //撤销暂存区的修改
 git reset HEAD readme.txt
 //删除文件
 rm——删除工作区的文件，可从版本库中恢复
 git rm——从版本库中删除，不可恢复，git rm后还需git commit
 
+//创建、删除与使用分支
 //创建dev分支
 git branch dev
 //切换到dev分支
 git checkout dev
-//创建并切换到Dev分支
+//创建并切换到dev分支（常用）
 git checkout -b dev
 //查看当前分支
 git branch
