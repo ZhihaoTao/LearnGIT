@@ -48,10 +48,17 @@ git checkout dev
 git checkout -b dev
 //查看当前分支
 git branch
-//将dev分支合并到当前分支
+//将dev分支合并到当前分支（默认使用Fast forward模式）
 git merge dev
+//将dev分支合并到当前分支并禁用Fast forward模式（使用普通模式），BranchName是分支名字，因为禁用
+//Fast forward模式会提交一个新的commit，所以需要使用注释参数-m。普通模式和Fast forward模式区别似乎（目前看来）就是前者能看得出做过合并，会显示在git log中，而后者则看不出来做过合并。
+git merge --no-ff -m "***" BranchName
 //删除dev分支
 git branch -d dev
+//分支策略
+在实际开发中，应按几个基本原则进行分支管理：
+（1）首先，master分支应该是非常稳定的，也就是仅用来发布新版本，平时不应该在上面干活；
+（2）干活应该都在自己新建的分支dev上，dev分支是不稳定的，到某个时候比如发布的时候再把dev分支合并到master分支上，团队中每个开发成员都有自己的dev分支，这样既能协同开发，又能减少相互干扰。
 
 //远程仓库
 //添加远程仓库（将本地版本库和远程库关联起来），origin是远程库的名字，GIT默认是origin，可改
