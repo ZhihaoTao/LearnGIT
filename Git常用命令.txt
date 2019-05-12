@@ -59,6 +59,20 @@ git branch -d dev
 在实际开发中，应按几个基本原则进行分支管理：
 （1）首先，master分支应该是非常稳定的，也就是仅用来发布新版本，平时不应该在上面干活；
 （2）干活应该都在自己新建的分支dev上，dev分支是不稳定的，到某个时候比如发布的时候再把dev分支合并到master分支上，团队中每个开发成员都有自己的dev分支，这样既能协同开发，又能减少相互干扰。
+//bug分支
+//修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除bug分支；
+//当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再git stash pop，回到工作现场。
+//对于“untrack”状态的文件（即新建但未add/commit的文件）在git stash之前一定要git add，不然不会被git系统管理，也就不会被stash。
+//git stash的使用场景：设A为游戏软件 1、master 上面发布的是A的1.0版本 2、dev 上开发的是A的2.0版本 3、这时，用户反映 1.0版本存在漏洞，有人利用这个漏洞开外挂 4、需要从dev切换到master去填这个漏洞，正常必须先提交dev目前的工作，才能切换。 5、而dev的工作还未完成，不想提交，所以先把dev的工作stash一下。然后切换到master 6、在master建立分支issue101并切换. 7、在issue101上修复漏洞。 8、修复后，在master上合并issue101 9、切回dev，恢复原本工作，继续工作。
+//注意：对于上述第4步，如果既未commit又未stash就切换到需要修复bug的分支，这是不安全也不推荐的，会有一些“隐患”，因此在切换之前需要commit或stash正在工作的分支上的内容。
+//保存工作现场
+git stash
+//恢复工作现场
+git stash apply
+//删除stash
+git stash drop
+//恢复工作现场的同时并删除stash
+git stash pop
 
 //远程仓库
 //添加远程仓库（将本地版本库和远程库关联起来），origin是远程库的名字，GIT默认是origin，可改
