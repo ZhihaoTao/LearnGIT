@@ -73,16 +73,37 @@ git stash apply
 git stash drop
 //恢复工作现场的同时并删除stash
 git stash pop
+//rebase操作的特点：把分叉的提交历史“整理”成一条直线，看上去更直观；缺点是本地的分叉提交已经被修改过了。
+//rebase的目的是使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比。
+git rebase
 
 //远程仓库
 //添加远程仓库（将本地版本库和远程库关联起来），origin是远程库的名字，GIT默认是origin，可改
 git remote add origin git@gitee.com:MyGIT/demo.git
-//查看远程仓库
+//查看远程仓库（简略信息）
+git remote
+//查看远程仓库（详细信息）
 git remote -v
 //克隆远程仓库
 git clone git@gitee.com:MyGIT/demo.git
-//拉取远程仓库到本地master主分支
+//拉取远程仓库的master分支并与当前本地分支合并
 git pull origin master
 //推送本地master分支到远程仓库
 git push -u origin master（第一次推送）
 git push origin master（后续推送不用加参数“u”）
+
+//标签管理，注意：标签总是和某个commit挂钩，如果这个commit既出现在master分支，又出现在dev分支，那么在这两个分支上都可以看到这个标签。
+//查看所有标签
+git tag
+//新建一个标签，默认为HEAD，也可以指定一个commit id
+git tag <tagname>
+//指定（附加）标签信息
+git tag -a <tagname> -m "……"
+//删除本地标签
+git tag -d <tagname>
+//删除远程标签
+git push origin :refs/tags/<tagname>
+//推送本地标签
+git push origin <tagname>
+//推送全部未推送过的本地标签
+git push origin --tags
