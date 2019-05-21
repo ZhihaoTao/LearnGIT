@@ -110,3 +110,17 @@ git push origin :refs/tags/<tagname>
 git push origin <tagname>
 //推送全部未推送过的本地标签
 git push origin --tags
+
+//需要忽略某些文件（不提交到git仓库中，但又要放在工作目录下）时，可以通过编写.gitignore的方式解决
+//.gitignore文件本身要放到版本库里，并且可以对.gitignore做版本管理
+
+//配置别名
+git config --global alias.自定义的别名 git原有命令
+例子：
+git config --global alias.st status
+git config --global alias.co checkout
+
+//搭建自己的git服务器
+1. 搭建Git服务器非常简单，通常10分钟即可完成；
+2. 要方便管理公钥，用Gitosis；
+3. 要像SVN那样变态地控制权限，用Gitolite。
